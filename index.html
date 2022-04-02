@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <body>
+      <style>
+        .tooltip {
+          line-height: 1.5;
+          padding: 6px;
+          background: #38071c;
+          color: #e9c7d6;
+          border-radius: 1px;
+          pointer-events: none;
+          position: absolute;
+          text-align: center;
+          font: 12px sans-serif;
+        }
+        .long-graph-container {
+          border: solid;
+          border-radius: 2px;
+          border-color: #38071c;
+          border-width: 3px;
+          width: 60%;
+          margin-bottom: 10px;
+          margin-right: 10px;
+        }
+
+        .short-graph-container {
+          border: solid;
+          border-radius: 2px;
+          border-color: #38071c;
+          border-width: 3px;
+          width: 29.5%;
+          margin-bottom: 10px;
+          margin-right: 10px;
+        }
+        .centroid {
+          opacity: 0.1;
+        }
+        .container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .title {
+          font-weight: bold;
+          font: 16px sans-serif;
+          text-align: center;
+        }
+        .svg {
+          background-color: "white";
+        }
+      </style>
+      <div class="container">
+        <!-- <div class="long-graph-container" id="map_div">
+          <div class="title">An overall map</div>
+          <svg class="svg" id="map_svg"></svg>
+        </div>
+        <div class="short-graph-container" id="scatter_vacc_div">
+          <div class="title">Vaccinations against cases scattergraph</div>
+          <svg class="svg" id="scatter_vacc_svg"></svg>
+        </div>
+        <div class="short-graph-container" id="pie_chart_div">
+          <div class="title">Deaths by continents</div>
+          <svg class="svg" id="pie_chart_svg"></svg>
+        </div>
+        <div class="short-graph-container" id="line_vacc_div">
+          <div class="title">Vaccinations over time</div>
+          <svg class="svg" id="line_vacc_svg"></svg>
+        </div>
+
+        <div class="short-graph-container" id="line_div">
+          <div class="title">Continents and reproduction rate</div>
+          <svg class="svg" id="line_svg"></svg>
+        </div>
+
+        <div class="short-graph-container" id="scatter_div">
+          <div class="title">Wealth vs reproduction rate scattergraph</div>
+          <svg class="svg" id="scatter_svg"></svg>
+        </div>
+        <div class="long-graph-container" id="force_div">
+          <div class="title">Forced graph</div>
+          <svg class="svg" id="force_svg"></svg>
+        </div>
+        <div class="long-graph-container" id="stacked_div">
+          <div class="title">Vaccinations by age group</div>
+          <svg class="svg" id="stacked_svg"></svg>
+        </div> -->
+      </div>
+    </body>
+    <script type="text/javascript" src="tree.js"></script>
+    <!-- <script type="text/javascript" src="pie-chart.js"></script>
+    <script type="text/javascript" src="line-chart.js"></script>
+    <script type="text/javascript" src="line-chart-vaccines.js"></script>
+    <script type="text/javascript" src="stacked-bar.js"></script>
+    <script type="text/javascript" src="scatter-plot-vaccines.js"></script>
+    <script type="text/javascript" src="scatter-plot.js"></script>
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="force-graph.js"></script> -->
+    <!-- <script>
+      pieChart("All");
+    </script>
+    <script>
+      lineChartVaccines("All");
+    </script>
+    <script>
+      lineChart("All");
+    </script>
+    <script>
+      scatterVaccPlot();
+    </script>
+    <script>
+      scatterPlot();
+    </script>
+    <script>
+      forceGraph();
+    </script> -->
+    <!-- <script type="text/javascript" src="line-chart.js"></script> -->
+  </head>
+</html>
