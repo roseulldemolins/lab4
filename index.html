@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <body>
       <style>
@@ -31,7 +31,7 @@
           border-radius: 2px;
           border-color: #38071c;
           border-width: 3px;
-          width: 29.5%;
+          width: 100%;
           margin-bottom: 10px;
           margin-right: 10px;
         }
@@ -49,10 +49,15 @@
           text-align: center;
         }
         .svg {
+          width: 1000px;
+          height: 1000px;
           background-color: "white";
         }
       </style>
       <div class="container">
+        <div >
+          <svg class="svg" id="tree_map"></svg>
+        </div>
         <!-- <div class="long-graph-container" id="map_div">
           <div class="title">An overall map</div>
           <svg class="svg" id="map_svg"></svg>
@@ -89,7 +94,7 @@
         </div> -->
       </div>
     </body>
-    <script type="text/javascript" src="tree.js"></script>
+    <script type="text/javascript" src="tree-map.js"></script>
     <!-- <script type="text/javascript" src="pie-chart.js"></script>
     <script type="text/javascript" src="line-chart.js"></script>
     <script type="text/javascript" src="line-chart-vaccines.js"></script>
@@ -98,6 +103,9 @@
     <script type="text/javascript" src="scatter-plot.js"></script>
     <script type="text/javascript" src="map.js"></script>
     <script type="text/javascript" src="force-graph.js"></script> -->
+    <script>
+      drawTreeMap()
+    </script>
     <!-- <script>
       pieChart("All");
     </script>
