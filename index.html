@@ -55,6 +55,10 @@
         }
       </style>
       <div class="container">
+        <div class="long-graph-container" id="map_div">
+          <div class="title">An overall map</div>
+          <svg class="svg" id="bar_race"></svg>
+        </div>
         <div >
           <svg class="svg" id="tree_map"></svg>
         </div>
@@ -62,6 +66,7 @@
           <div class="title">An overall map</div>
           <svg class="svg" id="map_svg"></svg>
         </div>
+     
         <div class="short-graph-container" id="scatter_vacc_div">
           <div class="title">Vaccinations against cases scattergraph</div>
           <svg class="svg" id="scatter_vacc_svg"></svg>
@@ -94,6 +99,7 @@
         </div> -->
       </div>
     </body>
+    <script type="text/javascript" src="chart-race-copy.js"></script>
     <script type="text/javascript" src="tree-map.js"></script>
     <!-- <script type="text/javascript" src="pie-chart.js"></script>
     <script type="text/javascript" src="line-chart.js"></script>
@@ -105,6 +111,9 @@
     <script type="text/javascript" src="force-graph.js"></script> -->
     <script>
       drawTreeMap()
+    </script>
+     <script>
+      drawChartRace()
     </script>
     <!-- <script>
       pieChart("All");

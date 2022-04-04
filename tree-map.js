@@ -31,12 +31,23 @@ d3.csv(diversityData).then( function(data) {
 
 // console.log(obj);
 
-const hi = Object.keys(data[0]).forEach(key => {
+// const hi = Object.keys(data).forEach(key => {
 
-    return {value:data[0][key], name:key, parent: "Google"};
-  });
+//     return {children: {}}
+//     // {value:data[0][key], name:key, parent: "Google"};
+//   });
+
+// const hi = "hi"
+
+
+
+const hi = {
+    children: data.map(item => ({name: item.Company, children: Object.keys(item).forEach(key => console.log( item, {name: key, value:item[key]}))}))
+};
 
   console.log(hi)
+
+//   console.log('nhis')
 
 //     0: {name: "Origin", parent: "", value: ""}
 // 1: {name: "grp1", parent: "Origin", value: "12"}
