@@ -8,10 +8,10 @@ var svg = d3.select("#bar_race")
 
 
 
-var tickDuration = 2000;
+var tickDuration = 3000;
 
-var top_n = 5;
-var height = 600;
+var top_n = 10;
+var height = 450;
 var width = 960;
 
 const margin = {
@@ -40,38 +40,54 @@ let caption = svg.append('text')
 .style('text-anchor', 'end')
 .html('Source: Interbrand');
 
-let year = 2015;
+let year = 2014;
 
 d3.csv(companyData).then(function(data) {
 //if (error) throw error;
 
-console.log(data);
+const allData = data 
 
-const companies = ["Google", "Microsoft", "Facebook", "Apple", "Amazon"]
-// const companies = ["Google"]
+const sectors = ["Tech", "Social Media"]
 data = data.filter(
     (line) =>
-      companies.includes(line.Company)
+      sectors.includes(line.Type)
   );
 
  data.forEach(d => {
+console.log(d.lastValue)
   d.value = +d.value,
-  d.lastValue =  5,
-  d.value = isNaN(d.value) ? 0 : d.value,
+  d.lastValue =  +d.lastValue,
+  d.value = isNaN(d.value) ? 0 : +d.value,
+//   d.lastValue = isNaN(getPreviousValue(d)) ? 0 : +d.lastValue,
+
   d.year = +d.year,
   d.colour = d3.hsl(Math.random()*360,0.75,0.75)
 });
-
-console.log(data);
 
 let yearSlice = data.filter(d => 
     d.year == year && !isNaN(d.value))
 .sort((a,b) => b.value - a.value)
 .slice(0, 5);
 
+function getPreviousValue(line){
+    const previousYear = line.year == 2015 ? 2015 : line.year - 1 
+    const name = line.Company
+    return allData.find(
+        (dataLine) => {
+        console.log(dataLine.year == +previousYear && dataLine.Company == name)
+        dataLine.year == +previousYear && dataLine.Company == name
+    })}
+
+    console.log('hererere', allData.filter((line) => {
+        // console.log('here2', line.Company, line.year)
+        line.Company === "Facebook" &&
+        line.year === 2015
+    }))
+
+
 yearSlice.forEach((d,i) => d.rank = i);
 
-console.log('yearSlice: ', yearSlice)
+console.log(data)
 
 let x = d3.scaleLinear()
   .domain([0, d3.max(yearSlice, d => d.value)])
@@ -94,7 +110,7 @@ svg.append('g')
  .attr('transform', `translate(0, ${margin.top})`)
  .call(xAxis)
  .selectAll('.tick line')
-//  .classed('origin', d => d == 0);
+ .classed('origin', d => d == 0);
 
 svg.selectAll('rect.bar')
   .data(yearSlice, d => d.Company)
@@ -141,13 +157,8 @@ yearSlice = data.filter(d => d.year == year && !isNaN(d.value))
   .sort((a,b) => b.value - a.value)
   .slice(0,top_n);
 
-  console.log(data)
-
-  console.log('IntervalYear: ', yearSlice);
-
 yearSlice.forEach((d,i) => d.rank = i);
 
-console.log('IntervalYear: ', yearSlice);
 
 x.domain([0, d3.max(yearSlice, d => d.value)]); 
 
@@ -232,7 +243,7 @@ svg.select('.xAxis')
     .attr('class', 'valueLabel')
     .attr('x', d => x(d.value)+5)
     .attr('y', d => y(top_n+1)+5)
-    .text(d => d3.format(',.0f')(d.lastValue))
+    .text(d => d3.format(',.0f')(d.value))
     .transition()
       .duration(tickDuration)
       .ease(d3.easeLinear)
@@ -245,7 +256,10 @@ svg.select('.xAxis')
       .attr('x', d => x(d.value)+5)
       .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
       .tween("text", function(d) {
+          
+          console.log(d.lastValue)
          let i = d3.interpolateRound(d.lastValue, d.value);
+         console.log(i)
          return function(t) {
            this.textContent = d3.format(',')(i(t));
         };
