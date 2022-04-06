@@ -1,13 +1,13 @@
 function drawChartRace(){
   let duration = 250
-  let n = 12
+  let n = 1
 
   margin = ({top: 16, right: 6, bottom: 6, left: 0})
 
   formatDate = d3.utcFormat("%Y")
 
   width = 1000
-  barSize = 48
+  barSize = 2
   height = margin.top + barSize * n + margin.bottom
 
   let k = 10 
@@ -109,7 +109,7 @@ let companyData = "http://localhost:8000/category-brands.csv"
 
 var svg = d3.select("#bar_race")
 .attr("width", 960)
-.attr("height", 600);
+.attr("height", 300);
 
 const updateBars = bars(svg);
   const updateAxis = axis(svg);
