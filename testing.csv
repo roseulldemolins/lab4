@@ -1,4 +1,4 @@
-year,Type,Company,value,lastValue, Male % , % White , % Asian , % Latino , % Black , % Multi , % Other , % Undeclared 
+year,Type,Company,value,lastValue,Male,White,Asian,Latino,Black,Multi,Other,Undeclared
 2016,Social Media,Facebook,33,32,67,53,38,4,2,3, -   ,
 2016,Social Media,Instagram,31,31,69,57,34,4,2,3, -   ,
 2016,Social Media,Google+,30,30,70,60,31,3,2,3,1,

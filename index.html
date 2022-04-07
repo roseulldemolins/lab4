@@ -200,14 +200,28 @@ input:checked + .slider:before {
           <div class="title">Ethnic Diversity</div>
           <svg class="svg" id="stacked_svg"></svg>
         </div>
+        <div class="short-graph-container" id="stacked_div">
+          <div class="title">Ethnic Diversity</div>
+          <svg class="svg" id="pie_chart"></svg>
+        </div>
+        <div class="long-graph-container" id="map_div">
+          <div>
+            <button type="button" onclick="updateBarChart(`Female`)">Women</button>
+<button type="button" onclick="updateBarChart(`Male`)">Men</button>
+          </div>
+          <div class="title">Difference in Pay Between Men and Women at Tech Cmpanies in the UK</div>
+          <svg class="svg" id="bar_chart"></svg>
+        </div>
       </div>
     </body>
     <script type="text/javascript" src="chart-race.js"></script>
     <!-- <script type="text/javascript" src="tree-map.js"></script> -->
-    <!-- <script type="text/javascript" src="pie-chart.js"></script>
-    <script type="text/javascript" src="line-chart.js"></script>
-    <script type="text/javascript" src="line-chart-vaccines.js"></script> -->
+    <script type="text/javascript" src="pie-chart.js"></script>
+    <!-- <script type="text/javascript" src="line-chart.js"></script>
+    <script type="text/javascript" src="line-chart-vaccines.js"></script> --> -->
     <script type="text/javascript" src="stacked-bar.js"></script>
+    <script type="text/javascript" src="bar-chart.js"></script>
+
     <!-- <script type="text/javascript" src="scatter-plot-vaccines.js"></script> -->
     <!-- <script type="text/javascript" src="scatter-plot.js"></script>
     <script type="text/javascript" src="map.js"></script>
@@ -218,6 +232,9 @@ input:checked + .slider:before {
      <script>
       //  drawChartRace()
       // drawChartRace(true)
+    </script>
+    <script>
+      drawPieChart()
     </script>
     <!-- <script>
       pieChart("All");
