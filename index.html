@@ -51,138 +51,141 @@
           padding-bottom: 15px;
         }
         .svg {
-      
           background-color: "white";
         }
 
-        text{
-      font-size: 16px;
-      font-family: Open Sans, sans-serif;
-    }
+        text {
+          font-size: 16px;
+          font-family: Open Sans, sans-serif;
+        }
 
-      text.label{
-        font-weight: 600;
-      }
-    
-      text.valueLabel{
-       font-weight: 300;
-      }
-    
-      text.yearText{
-        font-size: 64px;
-        font-weight: 700;
-        opacity: 0.25;
-      }
-      .tick text {
-        fill: #777777;
-      }
-      .xAxis .tick:nth-child(2) text {
-        text-anchor: start;
-      }
-      .tick line {
-        shape-rendering: CrispEdges;
-        stroke: #dddddd;
-      }
-      .tick line.origin{
-        stroke: #aaaaaa;
-      }
-      path.domain{
-        display: none;
-      }
+        text.label {
+          font-weight: 600;
+        }
 
-      path.arc {
-  opacity: 0.9;
-  transition: opacity 0.5s;
-}
+        text.valueLabel {
+          font-weight: 300;
+        }
 
-path.arc:hover {
-  opacity: 0.7;
-}
+        text.yearText {
+          font-size: 64px;
+          font-weight: 700;
+          opacity: 0.25;
+        }
+        .tick text {
+          fill: #777777;
+        }
+        .xAxis .tick:nth-child(2) text {
+          text-anchor: start;
+        }
+        .tick line {
+          shape-rendering: CrispEdges;
+          stroke: #dddddd;
+        }
+        .tick line.origin {
+          stroke: #aaaaaa;
+        }
+        path.domain {
+          display: none;
+        }
 
-.axis line, .axis circle  {
-  stroke: #cccccc;
-  stroke-width: 1px
-}
+        path.arc {
+          opacity: 0.9;
+          transition: opacity 0.5s;
+        }
 
-.axis circle {
-  fill: none;
-}
+        path.arc:hover {
+          opacity: 0.7;
+        }
 
-.r.axis text {
-  text-anchor: end
-}
+        .axis line,
+        .axis circle {
+          stroke: #cccccc;
+          stroke-width: 1px;
+        }
 
+        .axis circle {
+          fill: none;
+        }
 
-      /* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
+        .r.axis text {
+          text-anchor: end;
+        }
 
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+        /* The switch - the box around the slider */
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+        }
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+        /* Hide default HTML checkbox */
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+        /* The slider */
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
+        input:checked + .slider {
+          background-color: #2196f3;
+        }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
+        input:focus + .slider {
+          box-shadow: 0 0 1px #2196f3;
+        }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
+        input:checked + .slider:before {
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+        }
 
-.slider.round:before {
-  border-radius: 50%;
-}
+        /* Rounded sliders */
+        .slider.round {
+          border-radius: 34px;
+        }
+
+        .slider.round:before {
+          border-radius: 50%;
+        }
       </style>
       <div class="container">
         <div class="long-graph-container" id="map_div">
           <div>
-            <button type="button" onclick="drawChartRace()">All Companies</button>
-<button type="button" onclick="drawChartRace(true)">Big 5</button>
+            <button type="button" onclick="drawChartRace()">
+              All Companies
+            </button>
+            <button type="button" onclick="drawChartRace(true)">Big 5</button>
           </div>
-          <div class="title">Highest % of Women at Tech and Social Media Companies Over 4 Years</div>
+          <div class="title">
+            Highest % of Women at Tech and Social Media Companies Over 4 Years
+          </div>
           <svg class="svg" id="bar_race"></svg>
         </div>
         <!-- <div >
@@ -224,15 +227,20 @@ input:checked + .slider:before {
           <svg class="svg" id="stacked_svg"></svg>
         </div>
         <div class="short-graph-container" id="stacked_div">
-          <div class="title">Ethnic Diversity</div>
+          <div class="title">Proportion of Women in Each Quartile of Pay Group</div>
+          <select id="selectButton"></select>
           <svg class="svg" id="pie_chart"></svg>
         </div>
         <div class="long-graph-container" id="map_div">
           <div>
-            <button type="button" onclick="updateBarChart(`Female`)">Women</button>
-<button type="button" onclick="updateBarChart(`Male`)">Men</button>
+            <button type="button" onclick="updateBarChart(`Female`)">
+              Women
+            </button>
+            <button type="button" onclick="updateBarChart(`Male`)">Men</button>
           </div>
-          <div class="title">Difference in Pay Between Men and Women at Tech Cmpanies in the UK</div>
+          <div class="title">
+            Difference in Pay Between Men and Women at Tech Cmpanies in the UK
+          </div>
           <svg class="svg" id="bar_chart"></svg>
         </div>
       </div>
@@ -241,7 +249,8 @@ input:checked + .slider:before {
     <!-- <script type="text/javascript" src="tree-map.js"></script> -->
     <script type="text/javascript" src="pie-chart.js"></script>
     <!-- <script type="text/javascript" src="line-chart.js"></script>
-    <script type="text/javascript" src="line-chart-vaccines.js"></script> --> -->
+    <script type="text/javascript" src="line-chart-vaccines.js"></script> -->
+    -->
     <script type="text/javascript" src="stacked-bar.js"></script>
     <script type="text/javascript" src="bar-chart.js"></script>
 
@@ -250,14 +259,14 @@ input:checked + .slider:before {
     <script type="text/javascript" src="map.js"></script>
     <script type="text/javascript" src="force-graph.js"></script> -->
     <script>
-      drawStackedChart()
+      drawStackedChart();
     </script>
-     <script>
+    <script>
       //  drawChartRace()
       // drawChartRace(true)
     </script>
     <script>
-      drawPieChart("VODAFONE LIMITED")
+      drawPieChart("VODAFONE LIMITED");
     </script>
     <!-- <script>
       pieChart("All");
