@@ -19,7 +19,7 @@ function drawStackedChart() {
   Promise.all([d3.csv(diversityData), d3.csv(companyData)]).then(function (
     data
   ) {
-    console.log(data);
+
 
     let diversityData = data[0];
     let companyData = data[1];
