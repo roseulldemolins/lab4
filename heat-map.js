@@ -171,6 +171,7 @@ function updateHeatMap(company, data) {
 
     .data(data, function(d) {return d.demographic+':'+d.job_category;})
     .join("rect")
+
     .transition()
     .duration(500)
       .style("fill", function(d) { 

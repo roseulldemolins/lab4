@@ -3,6 +3,7 @@
   <head>
     <!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
     <body>
       <style>
         .tooltip {
@@ -224,6 +225,9 @@
         </div> -->
         <div class="short-graph-container" id="stacked_div">
           <div class="title">Ethnic Diversity</div>
+          <div class="row align-items-center">
+            <div class="col-sm"><div id="slider-time"></div></div>
+          </div>
           <svg class="svg" id="stacked_svg"></svg>
         </div>
         <div class="short-graph-container" id="stacked_div">
@@ -246,6 +250,7 @@
     <script type="text/javascript" src="stacked-bar.js"></script>
 
     <script type="text/javascript" src="heat-map.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
 
 
     <!-- <script type="text/javascript" src="scatter-plot-vaccines.js"></script> -->
