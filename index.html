@@ -25,6 +25,9 @@
           width: 60%;
           margin-bottom: 10px;
           margin-right: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .short-graph-container {
@@ -35,6 +38,9 @@
           width: 38%;
           margin-bottom: 10px;
           margin-right: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
         .centroid {
           opacity: 0.1;
@@ -46,7 +52,7 @@
         }
         .title {
           font-weight: 800;
-          font: 28px sans-serif;
+          font: 24px sans-serif;
           text-align: center;
           padding-top: 15px;
           padding-bottom: 15px;
@@ -105,6 +111,19 @@
           stroke-width: 1px;
         }
 
+        .button {
+          background-color: #e9c7d6; /* Green */
+          border: none;
+          color: #38071c;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          width: 180px;
+          border-radius: 3px;
+          margin-top: 15px;
+        }
         .axis circle {
           fill: none;
         }
@@ -178,64 +197,33 @@
       </style>
       <div class="container">
         <div class="long-graph-container" id="map_div">
-          <div>
-            <button type="button" onclick="drawChartRace()">
-              All Companies
-            </button>
-            <button type="button" onclick="drawChartRace(true)">Big 5</button>
-          </div>
           <div class="title">
-            Highest % of Women at Tech and Social Media Companies Over 4 Years
+            Highest % of Women at Techology and Social Media Companies Over 4
+            Years
           </div>
+          <button class="button" type="button" onclick="drawChartRace()">
+            All Companies
+          </button>
+          <button class="button" type="button" onclick="drawChartRace(true)">
+            Big 5
+          </button>
+
           <svg class="svg" id="bar_race"></svg>
         </div>
-        <!-- <div >
-          <svg class="svg" id="tree_map"></svg>
-        </div>
-        <div class="long-graph-container" id="map_div">
-          <div class="title">An overall map</div>
-          <svg class="svg" id="map_svg"></svg>
-        </div>
-     
-        <div class="short-graph-container" id="scatter_vacc_div">
-          <div class="title">Vaccinations against cases scattergraph</div>
-          <svg class="svg" id="scatter_vacc_svg"></svg>
-        </div>
-        <div class="short-graph-container" id="pie_chart_div">
-          <div class="title">Deaths by continents</div>
-          <svg class="svg" id="pie_chart_svg"></svg>
-        </div>
-        <div class="short-graph-container" id="line_vacc_div">
-          <div class="title">Vaccinations over time</div>
-          <svg class="svg" id="line_vacc_svg"></svg>
-        </div>
 
-        <div class="short-graph-container" id="line_div">
-          <div class="title">Continents and reproduction rate</div>
-          <svg class="svg" id="line_svg"></svg>
-        </div>
-
-        <div class="short-graph-container" id="scatter_div">
-          <div class="title">Wealth vs reproduction rate scattergraph</div>
-          <svg class="svg" id="scatter_svg"></svg>
-        </div>
-        <div class="long-graph-container" id="force_div">
-          <div class="title">Forced graph</div>
-          <svg class="svg" id="force_svg"></svg>
-        </div> -->
         <div class="short-graph-container" id="stacked_div">
-          <div class="title">Ethnic Diversity</div>
-          <div class="row align-items-center">
-            <div class="col-sm"><div id="slider-time"></div></div>
-          </div>
+          <div class="title">Ethnic Diversity for Top Technology and Social Media Companies in a Given Year</div>
+          <div id="slider-time"></div>
           <svg class="svg" id="stacked_svg"></svg>
         </div>
         <div class="short-graph-container" id="stacked_div">
-          <div class="title">Proportion of Women in Each Quartile of Pay Group</div>
+          <div class="title">
+            Proportion of Women in Each Quartile of Pay Group
+          </div>
           <select id="selectButton"></select>
           <svg class="svg" id="pie_chart"></svg>
         </div>
-        <div class="long-graph-container" >
+        <div class="long-graph-container">
           <div class="title">Job Type By Demographics</div>
           <select id="selectButtonHeatMap"></select>
           <svg class="svg" id="heat_map"></svg>
@@ -243,33 +231,22 @@
       </div>
     </body>
     <script type="text/javascript" src="chart-race.js"></script>
-    <!-- <script type="text/javascript" src="tree-map.js"></script> -->
     <script type="text/javascript" src="pie-chart.js"></script>
-    <!-- <script type="text/javascript" src="line-chart.js"></script>
-    <script type="text/javascript" src="line-chart-vaccines.js"></script> -->
     <script type="text/javascript" src="stacked-bar.js"></script>
-
     <script type="text/javascript" src="heat-map.js"></script>
     <script src="https://unpkg.com/d3-simple-slider"></script>
-
-
-    <!-- <script type="text/javascript" src="scatter-plot-vaccines.js"></script> -->
-    <!-- <script type="text/javascript" src="scatter-plot.js"></script>
-    <script type="text/javascript" src="map.js"></script>
-    <script type="text/javascript" src="force-graph.js"></script> -->
     <script>
       drawStackedChart();
     </script>
     <script>
-      //  drawChartRace()
-      // drawChartRace(true)
+       drawChartRace(false)
     </script>
     <script>
       drawPieChart("VODAFONE LIMITED");
     </script>
-      <script>
-        drawHeatMap();
-      </script>
+    <script>
+      drawHeatMap();
+    </script>
     <!-- <script>
       pieChart("All");
     </script>

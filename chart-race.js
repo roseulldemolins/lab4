@@ -1,7 +1,7 @@
 function drawChartRace(filter){
 
 // The data csv file
-let companyData = "http://localhost:8000/testing.csv"
+let companyData = "http://localhost:8000/final-chart-race.csv"
 
 // This indicates the speed for each year (in milliseconds)
 var tickDuration = 3000;
@@ -78,6 +78,7 @@ function getPreviousValue(line){
     const name = line.Company
     return allData.find(
         (dataLine) => {
+          // Logic to say it must be the given year and company
         dataLine.year == +previousYear && dataLine.Company == name
     })}
 
@@ -104,6 +105,7 @@ let xAxis = d3.axisTop()
 // Adding percentage time at the end
   .tickFormat(d => d + '%');
 
+svg.selectAll('.yearText').remove()
 // Adding the x axis
 svg.append('g')
  .attr('class', 'axis xAxis')
@@ -112,14 +114,20 @@ svg.append('g')
 
 // Selecting all the bars and setting height, width and location
 svg.selectAll('rect.bar')
+// Attaching the relevant years data
   .data(yearSlice, d => d.Company)
   .enter()
   .append('rect')
   .attr('class', 'bar')
-  .attr('x', x(0)+1)
-  .attr('width', d => x(d.value)-x(0)-1)
-  .attr('y', d => y(d.rank)+5)
+  // Sets x to start at 0
+  .attr('x', x(0))
+  // Width is the value take away 0
+  .attr('width', d => x(d.value)-x(0))
+  // Y coordinate is based on rank (higher further up)
+  .attr('y', d => y(d.rank))
+  // Height of bar takes into account padding
   .attr('height', y(1)-y(0)-barPadding)
+  // Colour is based on if it's tech or social media
   .style('fill', d => d.color);
 
 // Adding the labels to be the company name
@@ -128,10 +136,14 @@ svg.selectAll('text.label')
   .enter()
   .append('text')
   .attr('class', 'label')
+  // So the label sits to the right inside the bar
   .attr('x', d => x(d.value)-8)
-  .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
+  // So the label is in the center
+  .attr('y', d => y(d.rank)+((y(1)-y(0))/2))
   .style('text-anchor', 'end')
+  // Font colour is based on category
   .style('fill', d => d.fontColour)
+  // Setting the text to be the name
   .html(d => d.Company);
 
 // Adding the labels for the % value
@@ -140,8 +152,11 @@ svg.selectAll('text.valueLabel')
 .enter()
 .append('text')
 .attr('class', 'valueLabel')
-.attr('x', d => x(d.value)+5)
-.attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
+// X so it sits to the right (magic number 5)
+.attr('x', d => x(d.value))
+// Y so it's in the center
+.attr('y', d => y(d.rank)+((y(1)-y(0))/2))
+// Adds a % sign on the end
 .text(d => d + '%');
 
 
@@ -181,25 +196,26 @@ svg.select('.xAxis')
  bars
   .enter()
   .append('rect')
+  // Unique class so that it can be selected again
   .attr('class', d => `bar ${d.Company.replace(/\s/g,'_')}`)
-  .attr('x', x(0)+1)
-  .attr( 'width', d => x(d.value)-x(0)-1)
-  .attr('y', d => y(top_n+1)+5)
+  .attr('x', x(0))
+  .attr( 'width', d => x(d.value)-x(0))
+  .attr('y', d => y(top_n+1))
   .attr('height', y(1)-y(0)-barPadding)
   .style('fill', d => d.colour)
   // Transition to make it smooth
   .transition()
     .duration(tickDuration)
     .ease(d3.easeLinear)
-    .attr('y', d => y(d.rank)+5);
+    .attr('y', d => y(d.rank));
   
 // Sets the transition
  bars
   .transition()
     .duration(tickDuration)
     .ease(d3.easeLinear)
-    .attr('width', d => x(d.value)-x(0)-1)
-    .attr('y', d => y(d.rank)+5);
+    .attr('width', d => x(d.value)-x(0))
+    .attr('y', d => y(d.rank));
 
 // Transition when exiting
  bars
@@ -207,9 +223,10 @@ svg.select('.xAxis')
   .transition()
     .duration(tickDuration)
     .ease(d3.easeLinear)
-    .attr('width', d => x(d.value)-x(0)-1)
-    .attr('y', d => y(top_n+1)+5)
+    .attr('width', d => x(d.value)-x(0))
+    .attr('y', d => y(top_n+1))
     .remove();
+
 
 // Setting the labels to be the company
  let labels = svg.selectAll('.label')
@@ -222,7 +239,7 @@ svg.select('.xAxis')
   .append('text')
   .attr('class', 'label')
   .attr('x', d => x(d.value)-8)
-  .attr('y', d => y(top_n+1)+5+((y(1)-y(0))/2))
+  .attr('y', d => y(top_n+1)+((y(1)-y(0))/2))
   .style('text-anchor', 'end')
   .html(d => d.Company)  
   .style('fill', d => d.fontColour)  
@@ -230,7 +247,7 @@ svg.select('.xAxis')
   .transition()
     .duration(tickDuration)
     .ease(d3.easeLinear)
-    .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
+    .attr('y', d => y(d.rank)+((y(1)-y(0))/2));
        
 // Transition to move the label vertically
     labels
@@ -238,7 +255,7 @@ svg.select('.xAxis')
     .duration(tickDuration)
       .ease(d3.easeLinear)
       .attr('x', d => x(d.value)-8)
-      .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
+      .attr('y', d => y(d.rank)+((y(1)-y(0))/2));
 
 // Transition when the labels leave
  labels
@@ -247,33 +264,34 @@ svg.select('.xAxis')
       .duration(tickDuration)
       .ease(d3.easeLinear)
       .attr('x', d => x(d.value)-8)
-      .attr('y', d => y(top_n+1)+5)
+      .attr('y', d => y(top_n+1))
       .remove();
    
 
 // Setting the data to be the relevant one for year
  let valueLabels = svg.selectAll('.valueLabel').data(yearSlice, d => d.Company);
 
- // Settinf the location of text labels
+ // Setting the location of text labels
  valueLabels
     .enter()
     .append('text')
     .attr('class', 'valueLabel')
-    .attr('x', d => x(d.value)+5)
-    .attr('y', d => y(top_n+1)+5)
+    .attr('x', d => x(d.value))
+    .attr('y', d => y(top_n+1))
     .text(d => d.value + '%')
     .transition()
       .duration(tickDuration)
       .ease(d3.easeLinear)
-      .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1);
+      .attr('y', d => y(d.rank)+((y(1)-y(0))/2)+1);
 
 // Transition to it's smooth
  valueLabels
     .transition()
       .duration(tickDuration)
       .ease(d3.easeLinear)
-      .attr('x', d => x(d.value)+5)
-      .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+1)
+      // Labels in the center of bar
+      .attr('x', d => x(d.value))
+      .attr('y', d => y(d.rank)+((y(1)-y(0))/2))
       .tween("text", function(d) {
         // This interpolates between the value before and the next value
          let i = d3.interpolateRound(d.lastValue, d.value);
@@ -288,14 +306,14 @@ valueLabels
   .transition()
     .duration(tickDuration)
     .ease(d3.easeLinear)
-    .attr('x', d => x(d.value)+5)
-    .attr('y', d => y(top_n+1)+5)
+    .attr('x', d => x(d.value))
+    .attr('y', d => y(top_n+1))
     .remove();
 
 // Set the text to be the current year
 yearText.html(year);
 
-// Stop when it gets to 2018
+// Stop when it gets to 2018 (last year in data)
 if(year == 2018) ticker.stop();
 year =(+year) + 1;
 },tickDuration);
