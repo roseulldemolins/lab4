@@ -1,6 +1,9 @@
 // CSV file to read in
 let jobData = "http://localhost:8000/job_types.csv";
 
+
+var companyData
+
 // Function to draw overall heatmap
 function drawHeatMap() {
   // Setting the dimensions and margins of the graph
@@ -124,14 +127,34 @@ function drawHeatMap() {
     d3.select("#selectButtonHeatMap").on("change", function (d) {
       // Get the option chosen by the user
       var company = d3.select(this).property("value");
+
       // Call update chart function with this comapny
-      updateHeatMap(company, data);
+      updateHeatMap(company);
     });
   });
 }
 
 // Just to update colour rather than redraw
-function updateHeatMap(company, data) {
+function updateHeatMap(company) {
+  console.log(company)
+//Read the data
+d3.csv(jobData).then(function (data) {
+
+      // Make a set of all the comapnies to choose from
+      const companies = Array.from(new Set(data.map((d) => d.company)));
+
+      if (companies.includes(company)){
+  console.log(data)
+  // Maps the data
+  data = data.map((line) => {
+    return {
+      company: line.company,
+      // Concatenating the gender and race
+      demographic: line.gender + " " + line.race,
+      job_category: line.job_category,
+      count: line.count,
+    };
+  });
   // Adding a tooltip which won't be visible yet
   var tooltip = d3
     .select("#heat_map_div")
@@ -196,4 +219,4 @@ function updateHeatMap(company, data) {
     .style("stroke-width", 4)
     .style("stroke", "none")
     .style("opacity", 0.8);
-}
+}})}

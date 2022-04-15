@@ -198,6 +198,10 @@ function drawStackedChart() {
       tooltip.style("opacity", 0);
     };
 
+    const onclick = function (event, d){
+      updateHeatMap(d.data.Company)
+    }
+
     // Show the bars
     svg
       .append("g")
@@ -215,6 +219,7 @@ function drawStackedChart() {
       .on("mouseover", mouseover)
       .on("mousemove", mousemove)
       .on("mouseleave", mouseleave)
+      .on("click", onclick)
       // X is based on the company name
       .attr("x", (d) =>
         x(d.data.Company)
